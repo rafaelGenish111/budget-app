@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EntityType {
+  HOUSEHOLD
+  RAFAEL_BIZ
+  LEAH_BIZ
+}
+
+enum CategoryType {
+  EXPENSE
+  INCOME
+  BOTH
+}
+
+enum TxType {
+  INCOME
+  EXPENSE
+}
+
+enum AccountType {
+  SAVINGS
+  DEPOSIT
+  LOAN
+  CHECKING
+}
+
+model Entity {
+  id           String        @id @default(cuid())
+  name         String
+  type         EntityType    @unique
+  transactions Transaction[]
+  accounts     Account[]
+  budgets      Budget[]
+  createdAt    DateTime      @default(now())
+}
+
+model Category {
+  id            String        @id @default(cuid())
+  name          String
+  icon          String?
+  color         String        @default("#6366f1")
+  type          CategoryType  @default(EXPENSE)
+  order         Int           @default(0)
+  subcategories Subcategory[]
+  transactions  Transaction[]
+  budgets       Budget[]
+  createdAt     DateTime      @default(now())
+}
+
+model Subcategory {
+  id           String        @id @default(cuid())
+  name         String
+  categoryId   String
+  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+model Transaction {
+  id            String       @id @default(cuid())
+  date          DateTime
+  amount        Decimal      @db.Decimal(10, 2)
+  type          TxType
+  entityId      String
+  entity        Entity       @relation(fields: [entityId], references: [id])
+  categoryId    String?
+  category      Category?    @relation(fields: [categoryId], references: [id])
+  subcategoryId String?
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id])
+  note          String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Budget {
+  id         String   @id @default(cuid())
+  entityId   String
+  entity     Entity   @relation(fields: [entityId], references: [id])
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  amount     Decimal  @db.Decimal(10, 2)
+  month      Int
+  year       Int
+
+  @@unique([entityId, categoryId, month, year])
+}
+
+model Account {
+  id        String      @id @default(cuid())
+  name      String
+  type      AccountType
+  balance   Decimal     @db.Decimal(10, 2) @default(0)
+  entityId  String
+  entity    Entity      @relation(fields: [entityId], references: [id])
+  note      String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}

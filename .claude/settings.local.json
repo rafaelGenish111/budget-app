@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm install:*)",
+      "Bash(npm create:*)",
+      "Bash(npx shadcn@latest init --defaults)",
+      "Bash(npx shadcn@latest add card badge sheet dialog drawer tabs progress input label select separator skeleton toast)",
+      "Bash(npx shadcn@latest add sonner alert-dialog popover calendar scroll-area)",
+      "Bash(npx shadcn@latest add sonner alert-dialog popover scroll-area)",
+      "Bash(npx shadcn@latest add sonner alert-dialog popover scroll-area --overwrite)",
+      "Bash(npx shadcn@latest add card badge sheet dialog drawer tabs progress input label select separator skeleton --overwrite)",
+      "Bash(npm run:*)",
+      "Bash(npx shadcn@latest add textarea --overwrite)"
+    ]
+  }
+}
