@@ -12,8 +12,20 @@ import reportRoutes from './routes/reports'
 const app = express()
 const PORT = process.env.PORT || 3001
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://household-budget-client.vercel.app',
+  ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',') : []),
+]
+
 app.use(cors({
-  origin: process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',') : ['http://localhost:5173'],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, origin || '*')
+    } else {
+      callback(null, false)
+    }
+  },
   credentials: true,
 }))
 app.use(express.json())

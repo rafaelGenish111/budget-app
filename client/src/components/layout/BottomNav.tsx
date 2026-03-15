@@ -20,10 +20,10 @@ export function BottomNav({ onAddClick }: BottomNavProps) {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 safe-area-pb"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 safe-area-pb overflow-visible"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="flex items-end justify-around h-16">
+      <div className="flex items-end justify-around h-16 overflow-visible">
         {navItems.map((item, _index) => {
           if (item.path === null) {
             return (

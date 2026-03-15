@@ -120,8 +120,9 @@ export function AddTransactionDrawer({
     <Sheet open={open} onOpenChange={(v) => !v && handleClose()}>
       <SheetContent
         side="bottom"
-        className="h-[90vh] rounded-t-2xl px-4 pt-4 pb-0 flex flex-col"
+        className="h-[90dvh] rounded-t-2xl px-4 pt-4 pb-0 flex flex-col"
         dir="rtl"
+        showCloseButton={false}
       >
         {/* Header */}
         <SheetHeader className="flex-row items-center justify-between mb-4">
