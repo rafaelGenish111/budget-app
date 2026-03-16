@@ -70,10 +70,10 @@ export function getEntityScope(entityType?: string): 'HOUSEHOLD' | 'BUSINESS' | 
   return null
 }
 
-export function filterCategoriesByEntity(
-  categories: { entityScope: string }[],
+export function filterCategoriesByEntity<T extends { entityScope: string }>(
+  categories: T[],
   entityType?: string
-) {
+): T[] {
   const scope = getEntityScope(entityType)
   if (!scope) return categories
   return categories.filter(
