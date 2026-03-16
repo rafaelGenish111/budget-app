@@ -1,4 +1,3 @@
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { formatCurrency, cn, ENTITY_LABELS } from '@/lib/utils'
 import type { EntitySummary } from '@/types'
 
@@ -31,27 +30,32 @@ export function EntityTabs({
           }
         : totals
 
+  const tabs = [
+    { value: 'all', label: 'הכל' },
+    ...entitySummary.map((es) => ({
+      value: es.entity.id,
+      label: ENTITY_LABELS[es.entity.type] ?? es.entity.name,
+    })),
+  ]
+
   return (
     <div className="px-4 flex flex-col gap-3">
-      <Tabs value={selected} onValueChange={onChange}>
-        <TabsList className="w-full h-10 bg-gray-100 rounded-xl p-1">
-          <TabsTrigger
-            value="all"
-            className="flex-1 text-xs font-medium rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm"
+      <div className="flex gap-2 bg-gray-100 rounded-xl p-1">
+        {tabs.map((tab) => (
+          <button
+            key={tab.value}
+            onClick={() => onChange(tab.value)}
+            className={cn(
+              'flex-1 py-2 text-xs font-medium rounded-lg transition-all',
+              selected === tab.value
+                ? 'bg-blue-600 text-white shadow-sm font-semibold'
+                : 'text-gray-500 hover:text-gray-700'
+            )}
           >
-            הכל
-          </TabsTrigger>
-          {entitySummary.map((es) => (
-            <TabsTrigger
-              key={es.entity.id}
-              value={es.entity.id}
-              className="flex-1 text-xs font-medium rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm"
-            >
-              {ENTITY_LABELS[es.entity.type] ?? es.entity.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
       {/* Mini summary row */}
       <div className="flex justify-between text-xs text-gray-600 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">

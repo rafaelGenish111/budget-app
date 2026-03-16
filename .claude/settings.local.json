@@ -31,7 +31,9 @@
       "Bash(curl -s -I -X OPTIONS -H \"Origin: https://household-budget-client.vercel.app\" -H \"Access-Control-Request-Method: GET\" https://household-budget-server.vercel.app/api/entities)",
       "Bash(curl -s -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/entities)",
       "Bash(curl -s -D- -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/entities)",
-      "Bash(curl -v -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/health)"
+      "Bash(curl -v -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/health)",
+      "Bash(npx prisma:*)",
+      "Bash(npx tsx:*)"
     ]
   }
 }

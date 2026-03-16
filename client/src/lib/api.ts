@@ -32,7 +32,7 @@ export const updateSubcategory = (id: string, data: object) => api.put(`/subcate
 export const deleteSubcategory = (id: string) => api.delete(`/subcategories/${id}`)
 
 // Transactions
-export const getTransactions = (params?: object): Promise<Transaction[]> => api.get('/transactions', { params }).then((r) => r.data)
+export const getTransactions = (params?: object): Promise<Transaction[]> => api.get('/transactions', { params }).then((r) => r.data.transactions ?? r.data)
 export const createTransaction = (data: object) => api.post('/transactions', data).then((r) => r.data)
 export const updateTransaction = (id: string, data: object) => api.put(`/transactions/${id}`, data).then((r) => r.data)
 export const deleteTransaction = (id: string) => api.delete(`/transactions/${id}`)

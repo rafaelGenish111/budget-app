@@ -24,7 +24,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useCategories } from '@/hooks/useCategories'
 import { useEntities } from '@/hooks/useEntities'
 import { createTransaction } from '@/lib/api'
-import { cn, ENTITY_LABELS } from '@/lib/utils'
+import { cn, ENTITY_LABELS, filterCategoriesByEntity } from '@/lib/utils'
 import type { TxType, Category, Subcategory } from '@/types'
 
 interface AddTransactionDrawerProps {
@@ -77,8 +77,10 @@ export function AddTransactionDrawer({
     onClose()
   }
 
-  const filteredCategories = categories.filter(
-    (c) => c.type === txType || c.type === 'BOTH'
+  const selectedEntity = entities.find((e) => e.id === entityId)
+  const filteredCategories = filterCategoriesByEntity(
+    categories.filter((c) => c.type === txType || c.type === 'BOTH'),
+    selectedEntity?.type
   )
 
   const handleSave = async () => {

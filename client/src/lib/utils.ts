@@ -63,6 +63,24 @@ export const ENTITY_LABELS: Record<string, string> = {
   LEAH_BIZ: 'עסק לאה',
 }
 
+export function getEntityScope(entityType?: string): 'HOUSEHOLD' | 'BUSINESS' | null {
+  if (!entityType) return null
+  if (entityType === 'HOUSEHOLD') return 'HOUSEHOLD'
+  if (entityType === 'RAFAEL_BIZ' || entityType === 'LEAH_BIZ') return 'BUSINESS'
+  return null
+}
+
+export function filterCategoriesByEntity(
+  categories: { entityScope: string }[],
+  entityType?: string
+) {
+  const scope = getEntityScope(entityType)
+  if (!scope) return categories
+  return categories.filter(
+    (c) => c.entityScope === scope || c.entityScope === 'ALL'
+  )
+}
+
 export const ACCOUNT_TYPE_LABELS: Record<string, string> = {
   SAVINGS: 'חסכון',
   DEPOSIT: 'פקדון',

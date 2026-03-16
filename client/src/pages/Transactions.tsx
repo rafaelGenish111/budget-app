@@ -13,7 +13,7 @@ import { EditTransactionDialog } from '@/components/transactions/EditTransaction
 import { useTransactions } from '@/hooks/useTransactions'
 import { useEntities } from '@/hooks/useEntities'
 import { useCategories } from '@/hooks/useCategories'
-import { formatDate, formatCurrency, getDateRange, ENTITY_LABELS, cn, type DateRange } from '@/lib/utils'
+import { formatDate, formatCurrency, getDateRange, ENTITY_LABELS, filterCategoriesByEntity, cn, type DateRange } from '@/lib/utils'
 import type { Transaction } from '@/types'
 
 type DateRangeKey = 'today' | 'week' | 'month' | 'year'
@@ -107,7 +107,10 @@ export default function Transactions() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">כל הקטגוריות</SelectItem>
-              {categories.map((c) => (
+              {filterCategoriesByEntity(
+                categories,
+                entities.find((e) => e.id === entityFilter)?.type
+              ).map((c) => (
                 <SelectItem key={c.id} value={c.id}>
                   {c.name}
                 </SelectItem>

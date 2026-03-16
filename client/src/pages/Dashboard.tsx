@@ -106,7 +106,11 @@ export default function Dashboard() {
             <Skeleton className="h-16 rounded-xl" />
           </div>
         ) : (
-          <BudgetProgressList items={data?.budgetProgress ?? []} />
+          <BudgetProgressList
+            items={(data?.budgetProgress ?? []).filter(
+              (bp) => selectedEntity === 'all' || bp.budget.entityId === selectedEntity
+            )}
+          />
         )}
       </div>
 
@@ -122,7 +126,11 @@ export default function Dashboard() {
             ))}
           </div>
         ) : (
-          <RecentTransactions transactions={data?.recentTransactions ?? []} />
+          <RecentTransactions
+            transactions={(data?.recentTransactions ?? []).filter(
+              (tx) => selectedEntity === 'all' || tx.entityId === selectedEntity
+            )}
+          />
         )}
       </div>
     </div>

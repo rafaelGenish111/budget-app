@@ -31,6 +31,12 @@ enum AccountType {
   CHECKING
 }
 
+enum EntityScope {
+  HOUSEHOLD
+  BUSINESS
+  ALL
+}
+
 model Entity {
   id           String        @id @default(cuid())
   name         String
@@ -47,6 +53,7 @@ model Category {
   icon          String?
   color         String        @default("#6366f1")
   type          CategoryType  @default(EXPENSE)
+  entityScope   EntityScope   @default(ALL)
   order         Int           @default(0)
   subcategories Subcategory[]
   transactions  Transaction[]

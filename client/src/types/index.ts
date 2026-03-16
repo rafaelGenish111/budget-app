@@ -2,6 +2,7 @@ export type EntityType = 'HOUSEHOLD' | 'RAFAEL_BIZ' | 'LEAH_BIZ'
 export type CategoryType = 'EXPENSE' | 'INCOME' | 'BOTH'
 export type TxType = 'INCOME' | 'EXPENSE'
 export type AccountType = 'SAVINGS' | 'DEPOSIT' | 'LOAN' | 'CHECKING'
+export type EntityScope = 'HOUSEHOLD' | 'BUSINESS' | 'ALL'
 
 export interface Entity {
   id: string
@@ -23,6 +24,7 @@ export interface Category {
   icon: string | null
   color: string
   type: CategoryType
+  entityScope: EntityScope
   order: number
   subcategories: Subcategory[]
   createdAt: string
