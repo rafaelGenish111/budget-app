@@ -12,7 +12,26 @@
       "Bash(npx shadcn@latest add sonner alert-dialog popover scroll-area --overwrite)",
       "Bash(npx shadcn@latest add card badge sheet dialog drawer tabs progress input label select separator skeleton --overwrite)",
       "Bash(npm run:*)",
-      "Bash(npx shadcn@latest add textarea --overwrite)"
+      "Bash(npx shadcn@latest add textarea --overwrite)",
+      "Bash(rm -rf /Users/bestflow/Documents/projects/active/budget-app/client/.git)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo:*)",
+      "mcp__claude_ai_Vercel__list_teams",
+      "mcp__claude_ai_Vercel__list_projects",
+      "Bash(git push:*)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel",
+      "Bash(npx vercel:*)",
+      "Bash(vercel link:*)",
+      "Bash(vercel deploy:*)",
+      "mcp__claude_ai_Vercel__get_project",
+      "Bash(curl -s https://household-budget-server.vercel.app/api/health)",
+      "Bash(vercel env:*)",
+      "Bash(curl -s -I -X OPTIONS -H \"Origin: https://household-budget-client.vercel.app\" -H \"Access-Control-Request-Method: GET\" https://household-budget-server.vercel.app/api/entities)",
+      "Bash(curl -s -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/entities)",
+      "Bash(curl -s -D- -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/entities)",
+      "Bash(curl -v -H \"Origin: https://household-budget-client.vercel.app\" https://household-budget-server.vercel.app/api/health)"
     ]
   }
 }
